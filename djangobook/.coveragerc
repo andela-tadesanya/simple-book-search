@@ -1,0 +1,8 @@
+[run]
+source = book
+
+[report]
+omit = 
+    */htmlcov/*
+    */book/migrations/*
+    */book/apps.py
