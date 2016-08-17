@@ -1,0 +1,20 @@
+{% extends "book/base.html" %}
+
+{% block content %}
+	<div class="row">
+		<div class="col-sm-12">
+			<p>Your search for "{{query}}" produced:</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			{% if books %}
+				{% for book in books %}
+					<p>{{book.name}} <span>ISBN: {{book.ISBN}}</span></p>
+				{% endfor %}
+			{% else %}
+				No Results...
+			{% endif %}
+		</div>
+	</div>
+{% endblock content %}
