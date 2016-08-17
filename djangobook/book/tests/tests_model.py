@@ -2,7 +2,7 @@ from django.test import TestCase
 from book.models import Book, Category
 
 
-class BookTestCase(TestCase):
+class BookCategoryModelTestCase(TestCase):
     def setUp(self):
         cat = Category.objects.create(name='horror')
         Book.objects.create(name='alone at home',
