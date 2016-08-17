@@ -16,11 +16,6 @@ def search_by_cat(query):
     return books
 
 
-def throw_error(request):
-    messages.error(request, 'Invalid search entry.')
-    return HttpResponseRedirect('/')
-
-
 # Create your views here.
 def search(request):
     if request.method == 'GET':
@@ -32,13 +27,15 @@ def search(request):
             query = form.cleaned_data['query']
             parameter = form.cleaned_data['parameter']
 
-            if parameter == 'name':
+            if parameter == 'name' and query is not None:
                 result = search_by_name(query)
                 return render(request, 'book/result.html', {'query': query, 'books': result})
-            elif parameter == 'category':
+            elif parameter == 'category' and query is not None:
                 result = search_by_cat(query)
                 return render(request, 'book/result.html', {'query': query, 'books': result})
             else:
-                throw_error(request)
+                messages.error(request, 'Invalid search entry.')
+                return HttpResponseRedirect('/')
         else:
-            throw_error(request)
+            messages.error(request, 'Invalid search entry.')
+            return HttpResponseRedirect('/')
