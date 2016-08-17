@@ -11,8 +11,8 @@ def search_by_name(query):
     return books
 
 
-def search_by_cat(parameter):
-    books = Book.objects.filter(category__name__icontains=parameter)
+def search_by_cat(query):
+    books = Book.objects.filter(category__name__icontains=query)
     return books
 
 
@@ -32,7 +32,13 @@ def search(request):
             query = form.cleaned_data['query']
             parameter = form.cleaned_data['parameter']
 
-
-
+            if parameter == 'name':
+                result = search_by_name(query)
+                return render(request, 'book/result.html', {'query': query, 'books': result})
+            elif parameter == 'category':
+                result = search_by_cat(query)
+                return render(request, 'book/result.html', {'query': query, 'books': result})
+            else:
+                throw_error(request)
         else:
             throw_error(request)
