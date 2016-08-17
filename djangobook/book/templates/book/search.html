@@ -1,0 +1,39 @@
+{% extends "book/base.html" %}
+
+{% block content %}
+	<div class="row">
+		<div class="col-sm-8">
+			{% if messages %}
+			<div class="alert alert-danger" role="alert">
+			    {% for message in messages %}
+			    <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+			    {% endfor %}
+			</div>
+			{% endif %}
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-8">
+			<form method="post" action="">
+				{% csrf_token %}
+				<div class="input-group">
+			      <div class="input-group-btn">
+			        <button type="button" class="btn btn-secondary">Action</button>
+			        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			          <span class="sr-only">Toggle Dropdown</span>
+			        </button>
+			        <div class="dropdown-menu">
+			          <a class="dropdown-item" href="#">Action</a>
+			          <a class="dropdown-item" href="#">Another action</a>
+			          <a class="dropdown-item" href="#">Something else here</a>
+			          <div role="separator" class="dropdown-divider"></div>
+			          <a class="dropdown-item" href="#">Separated link</a>
+			        </div>
+			      </div>
+			      <input type="text" class="form-control" aria-label="Text input with segmented button dropdown">
+			    </div>
+			</form>
+		</div>
+	</div>
+{% endblock content %}
