@@ -22,7 +22,7 @@ class BookCategoryModelTestCase(TestCase):
     def test_book_has_category(self):
         '''checks if the book has a category of horror'''
         book = Book.objects.get(name='alone at home')
-        self.assertEqual(book.category__name, 'horror')
+        self.assertEqual(book.category.name, 'horror')
 
     def test_category_exists(self):
         '''checks if horror category was created'''
